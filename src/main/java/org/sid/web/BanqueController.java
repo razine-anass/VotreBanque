@@ -5,7 +5,8 @@ import javax.servlet.http.HttpServletRequest;
 import org.sid.entities.Compte;
 import org.sid.entities.Operation;
 import org.sid.metier.IBanqueMetier;
-import org.sid.repository.CompteRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
@@ -16,6 +17,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class BanqueController {
+	
+	Logger log = LoggerFactory.getLogger(BanqueController.class);
 	
 	@Autowired
 	private IBanqueMetier banqueMetier;
@@ -59,6 +62,7 @@ public class BanqueController {
 			
 		}catch(Exception e){
 			model.addAttribute("error", e);
+			log.error("toto",e);
 			return "redirect:/consulterCompte?codeCompte="+codeCompte+"&error="+e.getMessage();
 		}
 		//on envoi la reponse au client et on lui demande de se rediriger vers
