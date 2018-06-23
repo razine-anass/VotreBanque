@@ -8,14 +8,18 @@
  th:href="@{/css/bootstrap.min.css}"/>
  <link rel="stylesheet" type="text/css" href="../static/css/myStyle.css"
  th:href="@{/css/myStyle.css}"/>
-
 </head>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<link type="text/css" rel="stylesheet" th:href="@{https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css}" />
+<link type="text/css" rel="stylesheet" th:href="@{https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap.min.css}" />
+<script type="text/javascript" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap.min.js"></script>
 <body>
      <header >
          <div class="navbar navbar-inverse">
              <div class="container-fuild">
                <ul class="nav navbar-nav">
-                 <li><a th:href="@{/operation}">Operations</a></li>
+                 <li><a th:href="@{/operations}">Operations</a></li>
                  <li><a th:href="@{/comptes}">Comptes</a></li>
                  <li><a th:href="@{/clients}">Clients</a></li>
                </ul>

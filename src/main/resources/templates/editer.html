@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<title>Insert title here</title>
+</head>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<link type="text/css" rel="stylesheet" th:href="@{https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css}" />
+<link type="text/css" rel="stylesheet" th:href="@{https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap.min.css}" />
+<script type="text/javascript" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap.min.js"></script>
+<body>
+
+<div class="col-md-6">
+  <form th:action="@{/updateEtudiant}" th:object="${etudiant}" method="post">
+  
+   <div class="form-group" >
+    <input type="hidden" class="form-control" id="dateNaissance"  th:field="*{id}"/>
+  </div>
+  <div class="form-group">
+    <label for="nom">Nom:</label>
+    <input type="text" class="form-control" id="nom"  th:field="*{nom}">
+  </div>
+    <div>
+        <label for="dateNaissance" class="control-label">Date de Naissance:</label>
+        <input type="date" th:field="*{dateNaissance}" id="dateNaissance" class="form-control">
+<!--         <span class="text-error" th:errors="*{dateNaissance}"></span> -->
+    </div>
+  <div class="form-group">
+    <label for="email">Email:</label>
+    <input type="text" class="form-control" id="email"   th:field="*{email}"/>
+  </div>
+  <div class="form-group">
+    <label for="photo">Photo:</label>
+    <input type="text" class="form-control" id="photo"  th:field="*{photo}"/>
+  </div>
+    <button type="submit" class="btn btn-primary">Save</button>
+  </form>
+</div>
+ 
+
+</body>
+</html>

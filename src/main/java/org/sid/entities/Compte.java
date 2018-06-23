@@ -15,6 +15,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Inheritance(strategy=InheritanceType.SINGLE_TABLE)//inconvenient dans certain cas beaucoup de champ rest vide
 @DiscriminatorColumn(name="TYPE_COMPTE",discriminatorType=DiscriminatorType.STRING,length=2)//on precise le nom de la colonne qui s'ajoutte dans la table
@@ -23,10 +25,11 @@ public abstract class Compte implements Serializable {
 	private String codeCompte;
 	private Date dateCreation;
 	private double solde;
-	@ManyToOne
+	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="CODE_CLI")
 	private Client client;//clé etranger par defaut son est clien sinon on peut definir un nom avec @joinColumn
     @OneToMany(mappedBy="compte" ,fetch=FetchType.LAZY)
+    @JsonIgnore//ne sera pas sérialisé par jackson
 	private Collection<Operation> operations;
 	public Compte() {
 		super();

@@ -3,19 +3,24 @@ package org.sid.entities;
 import java.io.Serializable;
 import java.util.Collection;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Client implements Serializable {
-	@Id @GeneratedValue
-	private Long code;
+	@Id
+	@GeneratedValue
+    private Long code;
 	private String nom;
 	private String email;
-	@OneToMany(mappedBy="client", fetch=FetchType.LAZY)//relation bidirectionnelle
+	@OneToMany(mappedBy="client",fetch=FetchType.LAZY, cascade = CascadeType.ALL)//relation bidirectionnelle
+	@JsonIgnore//ne sera pas sérialisé par jackson
 	private Collection<Compte> comptes;
 	public Client() {
 		super();
