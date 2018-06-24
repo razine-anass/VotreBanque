@@ -1,6 +1,7 @@
 package org.sid.web;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.sid.entities.Client;
 import org.sid.repository.ClientRepository;
@@ -9,6 +10,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -22,7 +24,7 @@ public class ClientsController {
 	@Autowired
 	private  ClientRepository clientRepository;
 
-	@RequestMapping(value="/clients")
+	@RequestMapping(value="/getClients")
 	public String consulterClients(){
 		
 		return "listClients";
@@ -36,26 +38,26 @@ public class ClientsController {
 		return listClients;
 	}
 	
-	@RequestMapping(value="/supprimer/{id}", method = RequestMethod.GET)
+	@RequestMapping(value="/supprimer/{code}", method = RequestMethod.GET)
 	@Transactional
-	public String supprimerEtudiant(@PathVariable("id") Long id){
-		LOG.info("supprimer", id);
-		clientRepository.deleteByCode(id);
+	public String supprimerEtudiant(@PathVariable("code") Long code){
+		LOG.info("supprimer", code);
+		clientRepository.deleteByCode(code);
 		return "redirect:/clients";
 	}
-	/*
-	@RequestMapping(value="/modifier/{id}", method = RequestMethod.GET)
-	public String modifierEtudiant(@PathVariable("id") Long id,Model model){
-		LOG.info("getting user with id: {}", id);
-		Optional<Etudiant> etd=etudiantRepository.findById(id);
-		model.addAttribute("etudiant",etd);
-		return "editer";
+	
+	@RequestMapping(value="/modifier/{code}", method = RequestMethod.GET)
+	public String modifierEtudiant(@PathVariable("code") Long code,Model model){
+		LOG.info("getting user with id: {}", code);
+		Optional<Client> clt=clientRepository.findByCode(code);
+		model.addAttribute("client",clt);
+		return "editerClient";
 	}
 	
-	@RequestMapping(value="/updateEtudiant",method=RequestMethod.POST)
-	public String modifierEtudiant(Etudiant etudiant){
+	@RequestMapping(value="/updateClient",method=RequestMethod.POST)
+	public String modifierEtudiant(Client client){
 		
-		LOG.info("etudiant à mettre à jour: "+etudiant);
+		LOG.info("etudiant à mettre à jour: "+client);
 //		//etudiant existe dans le contexte de persistence
 //		etudiantRepository.save(etudiant);
 //		// on vide le context dans la base de donné
@@ -63,14 +65,14 @@ public class ClientsController {
 //		//etudiant est toujours dans le context donc le nom sera 3arbi
 //		etudiant.setNom("3arbi");
 		
-		Etudiant etd= etudiantRepository.getOne(etudiant.getId());
-		etd.setNom(etudiant.getNom());
-		etd.setEmail(etudiant.getEmail());
-		etd.setDateNaissance(etudiant.getDateNaissance());
-		etudiantRepository.save(etd);
-		return "redirect:/index";
+		Client clt= clientRepository.getOne(client.getCode());
+		clt.setNom(client.getNom());
+		clt.setEmail(client.getEmail());
+		clientRepository.save(clt);
+		return "redirect:/getClients";
 	}
 	
+	/*
 	@RequestMapping(value="/visualiser/{id}")
 	@ResponseBody
 	public String visualiserEtudiant(@PathVariable("id")Long id){

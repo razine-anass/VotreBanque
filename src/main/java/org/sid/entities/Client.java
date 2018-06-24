@@ -19,7 +19,7 @@ public class Client implements Serializable {
     private Long code;
 	private String nom;
 	private String email;
-	@OneToMany(mappedBy="client",fetch=FetchType.LAZY, cascade = CascadeType.ALL)//relation bidirectionnelle
+	@OneToMany(mappedBy="client",fetch=FetchType.LAZY)//relation bidirectionnelle
 	@JsonIgnore//ne sera pas sérialisé par jackson
 	private Collection<Compte> comptes;
 	public Client() {

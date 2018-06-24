@@ -48,17 +48,13 @@
 			            { "data": "email" , "name": "email","orderable":true },
 			            {// this is Actions Column 
 			                mRender: function (data, type, row) {
-			                    var linkEdit = '<a href="/supprimer/'+ row.code +
+			                    var linkSupprimer = '<a href="/supprimer/'+ row.code +
 			                    '"><span class="glyphicon glyphicon-trash red"></span></a>';
-// 			                    linkEdit = linkEdit.replace("-1", row.ID);
 
-			                    var linkDetails = '<a href="/modifier/'+ row.code +'"><span class="glyphicon glyphicon-pencil orange"/></a>';
-// 			                    linkDetails = linkDetails.replace("-1", row.ID);
-                                
-			                    var linkDelete = '<a href="#"  ><span class="glyphicon glyphicon-zoom-in"/></a>';
-// 			                    linkDelete = linkDelete.replace("-1", row.ID);
+			                    var linkModifier = '<a href="/modifier/'+ row.code +
+			                    '"><span class="glyphicon glyphicon-pencil orange"/></a>';
 
-			                    return linkDetails + "  " + linkEdit + "  " + linkDelete;
+			                    return linkModifier + "  " + linkSupprimer;
 			                }
 			            }
 		            
