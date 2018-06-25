@@ -26,10 +26,8 @@ public class ClientsController {
 
 	@RequestMapping(value="/getClients")
 	public String consulterClients(){
-		
 		return "listClients";
 	}
-	
 	
 	@RequestMapping(value="/list-clients" , method = RequestMethod.GET)
 	@ResponseBody
@@ -48,7 +46,7 @@ public class ClientsController {
 	
 	@RequestMapping(value="/modifier/{code}", method = RequestMethod.GET)
 	public String modifierEtudiant(@PathVariable("code") Long code,Model model){
-		LOG.info("getting user with id: {}", code);
+		LOG.info("code du client", code);
 		Optional<Client> clt=clientRepository.findByCode(code);
 		model.addAttribute("client",clt);
 		return "editerClient";
@@ -56,28 +54,11 @@ public class ClientsController {
 	
 	@RequestMapping(value="/updateClient",method=RequestMethod.POST)
 	public String modifierEtudiant(Client client){
-		
-		LOG.info("etudiant à mettre à jour: "+client);
-//		//etudiant existe dans le contexte de persistence
-//		etudiantRepository.save(etudiant);
-//		// on vide le context dans la base de donné
-//		etudiantRepository.flush();
-//		//etudiant est toujours dans le context donc le nom sera 3arbi
-//		etudiant.setNom("3arbi");
-		
+		LOG.info("client à mettre à jour: ",client);
 		Client clt= clientRepository.getOne(client.getCode());
 		clt.setNom(client.getNom());
 		clt.setEmail(client.getEmail());
 		clientRepository.save(clt);
 		return "redirect:/getClients";
 	}
-	
-	/*
-	@RequestMapping(value="/visualiser/{id}")
-	@ResponseBody
-	public String visualiserEtudiant(@PathVariable("id")Long id){
-		
-		return "razine";
-	}
-*/
 }

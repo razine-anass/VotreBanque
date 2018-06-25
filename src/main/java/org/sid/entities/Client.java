@@ -3,7 +3,6 @@ package org.sid.entities;
 import java.io.Serializable;
 import java.util.Collection;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -22,6 +21,7 @@ public class Client implements Serializable {
 	@OneToMany(mappedBy="client",fetch=FetchType.LAZY)//relation bidirectionnelle
 	@JsonIgnore//ne sera pas sérialisé par jackson
 	private Collection<Compte> comptes;
+	
 	public Client() {
 		super();
 	}

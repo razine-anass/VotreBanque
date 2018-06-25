@@ -20,8 +20,8 @@
              <div class="container-fuild">
                <ul class="nav navbar-nav">
                  <li><a th:href="@{/operations}">Operations</a></li>
-                 <li><a th:href="@{/comptes}">Comptes</a></li>
-                 <li><a th:href="@{/getClients}">Clients</a></li>
+                 <li sec:authorize="hasRole('ROLE_ADMIN')"><a th:href="@{/comptes}">Comptes</a></li>
+                 <li sec:authorize="hasRole('ROLE_ADMIN')"><a th:href="@{/getClients}">Clients</a></li>
                </ul>
                <ul class="nav navbar-nav navbar-right">
                  <li><a th:href="@{/login?logout}">Se deconnecter</a></li><!-- login?logout fonction de spring securite permet de se deconnecter-->
