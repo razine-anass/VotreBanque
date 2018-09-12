@@ -45,7 +45,6 @@
 	$(document).ready( function () {
 		 var table = $('#clients').DataTable({
 			        "processing": true,
-			        "serverSide": true,
 			        "ajax": {
 			            "url": "list-clients",
 			            "type": "GET",
@@ -68,7 +67,14 @@
 			                }
 			            }
 		            
-			        ]
+			        ],
+			        "oLanguage": {
+                        "sInfo": 'There are a total of _TOTAL_ <span class="lvllbl"></span>(s).',
+                        "sInfoEmpty": 'There are a total of _TOTAL_ <span class="lvllbl"></span>(s).',
+                        "sEmptyTable": 'There are no <span class="lvllbl"></span>(s) to display',
+                        "sZeroRecords": 'There are no matching <span class="lvllbl"></span>(s) to display',
+                        "sProcessing": 'Please wait - loading <span class="lvllbl"></span> (s) ...'
+                    }
 			    } );
 		 
 		 
