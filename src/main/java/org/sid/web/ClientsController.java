@@ -32,9 +32,7 @@ public class ClientsController {
 	@RequestMapping(value="/list-clients" , method = RequestMethod.GET)
 	@ResponseBody
 	public List<Client> listClients(){
-		System.out.println("anassssssssssss");
 		List<Client> listClients= clientRepository.findAll();
-		System.out.println("anassssssssssss"+listClients.get(0));
 		return listClients;
 	}
 	
