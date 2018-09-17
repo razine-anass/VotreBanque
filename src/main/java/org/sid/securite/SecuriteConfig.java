@@ -36,9 +36,9 @@ public class SecuriteConfig extends WebSecurityConfigurerAdapter{
 			//la requete que spring doit executer pour recuperer les roles
 			.authoritiesByUsernameQuery("Select username as  principal,roles as role from users_roles where username = ?")
 			//après avoir recuperer les roles spring leur rajoute ce prefixe 
-			.rolePrefix("ROLE_")
+			.rolePrefix("ROLE_");
 			//Spring utilise la fonction Md5 pour decoder le password afin de le comparer
-			.passwordEncoder(new Md5PasswordEncoder());
+//			.passwordEncoder(new Md5PasswordEncoder());
 
 	}
 	
