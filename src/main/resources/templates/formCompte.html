@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/Layout"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4"
+	layout:decorator="template1">
+<head>
+<meta charset="utf-8" />
+<title>Créer compte</title>
+</head>
+<body layout:fragment="content">
+	<div class="col-md-6">
+		<div class="panel panel-primary">
+			<div class="panel-heading">Créer compte</div>
+			<div class="panel-body">
+				<form action="#" th:action="@{/enregistrerCompte}"
+					method="post">
+<!-- 					<div class="form-group"> -->
+<!-- 						<input type="hidden" class="form-control" id="code" -->
+<!-- 							th:field="*{code}" /> -->
+<!-- 					</div> -->
+<!-- 					<div class="form-group"> -->
+<!-- 						<label for="nom">Nom:</label>  -->
+<!-- 						<input type="text" class="form-control" id="nom" th:field="*{nom}" /> -->
+<!-- 					</div> -->
+					<div class="form-group">
+					  <input type="radio" name="typeCompte" value="COURT"
+checked="checked" onchange="document.getElementById('forCompte').style.display='none'"/>
+					  <label>Compte courant</label>
+					  <input type="radio" name="typeCompte" value="EPAGN"
+ onchange="document.getElementById('forCompte').style.display='block'"/>
+					  <label>Compte epargne</label>
+					</div>
+					<div id="forCompte" style="display:none">
+		          	 <label>Epargne:</label>
+		          	 <input type="text" name="nom"/>     
+		           </div>
+					<button type="submit" class="btn btn-primary">Save</button>
+				</form>
+
+			</div>
+		</div>
+	</div>
+</body>
+</html>

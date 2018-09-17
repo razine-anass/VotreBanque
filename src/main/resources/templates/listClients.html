@@ -21,18 +21,24 @@
 }
 </style>
 <body layout:fragment="content">
+
 	<div th:fragment="listClients" class="col-md-6">
-		<table id="clients" class="table table-stripped">
-			<thead>
-				<tr>
-					<th>nom</th>
-					<th>email</th>
-					<th>action</th>
-				</tr>
-			</thead>
-			<tbody>
-			</tbody>
-		</table>
+		<div class="panel panel-primary">
+			<div class="panel-heading">Liste client</div>
+			<div class="panel-body">
+				<table id="clients" class="table table-stripped">
+					<thead>
+						<tr>
+							<th>nom</th>
+							<th>email</th>
+							<th>action</th>
+						</tr>
+					</thead>
+					<tbody>
+					</tbody>
+				</table>
+			</div>
+		</div>
 	</div>
 	<th:block layout:fragment="script">
 		<script>

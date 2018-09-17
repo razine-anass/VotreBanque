@@ -1,2 +1,7 @@
 .spacer{margin-top:40px;}
  .red{color:red;}
+ 
+.navbar-nav .open .dropdown-menu{
+    background-color: white;
+    color:black;
+  }
