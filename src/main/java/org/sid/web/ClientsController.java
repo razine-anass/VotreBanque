@@ -1,9 +1,11 @@
 package org.sid.web;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 import org.sid.entities.Client;
+import org.sid.entities.Ville;
 import org.sid.repository.ClientRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -104,5 +106,18 @@ public class ClientsController {
 		clt.setEmail(client.getEmail());
 		clientRepository.save(clt);
 		return "redirect:/getClients";
+	}
+	@RequestMapping(value="/charger-ville",method=RequestMethod.GET)
+	@ResponseBody
+	public List<Ville> chargerVille(){
+		List<Ville> list=new ArrayList<Ville>();
+		Long a=1L;
+		Ville v1=new Ville("Marrakech");
+		Ville v2=new Ville("beni mellal");
+		v1.setId_ville(a);
+		v2.setId_ville(a);
+		list.add(v1);
+		list.add(v2);
+		return list;
 	}
 }

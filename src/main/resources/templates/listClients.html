@@ -3,6 +3,8 @@
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/Layout"
 	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4"
 	layout:decorator="template1">
+	<link rel="stylesheet" type="text/css" href="../static/css/bootstrap.min.css"
+ th:href="@{/css/bootstrap.min.css}"/>
 <head>
 <meta charset="utf-8" />
 <title>liste clients</title>
@@ -19,6 +21,14 @@
 .green {
 	color: green;
 }
+.table-striped>tr:nth-child(odd)>td,
+ 
+.table-striped>tr:nth-child(odd)>th {
+ 
+background-color: #C49F0F;
+ 
+}
+ 
 </style>
 <body layout:fragment="content">
 
@@ -30,7 +40,7 @@
 					<thead>
 						<tr>
 							<th>nom</th>
-							<th>email</th>
+							<th>ville</th>
 							<th>action</th>
 						</tr>
 					</thead>
@@ -43,9 +53,9 @@
 	<th:block layout:fragment="script">
 		<script>
   
-  function format ( d ) {
-		console.log(d);
-	    return 'Full name: '+d.nom+' date de naissance :' +d.dateNaissance;
+  function format ( client ) {
+		console.log(client);
+	    return '<div class="bg-success text-white"><br>nom : '+client.nom+'</br>ville : ' +client.ville.nom_ville+'<br>email : ' +client.email+'</br></div>';
 	}
   
 	$(document).ready( function () {
@@ -58,7 +68,7 @@
 			        },
 			        "columns": [
 			            { "data": "nom" , "name": "nom" ,"searchable": true},
-			            { "data": "email" , "name": "email","orderable":true },
+			            { "data": "ville.nom_ville" , "name": "ville","orderable":true },
 			            {// this is Actions Column 
 			                mRender: function (data, type, row) {
 			                    var linkSupprimer = '<a href="/supprimer/'+ row.code +
@@ -101,7 +111,7 @@
 		        else {
 		            tr.addClass( 'details' );
 // 		            alert(row.data().nom);
-		            row.child('kasem'+format(row.data())).show();
+		            row.child(format(row.data())).show();
 		 
 		            // Add to the 'open' array
 		            if ( idx === -1 ) {

@@ -17,9 +17,12 @@ import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import lombok.Data;
+
 @Entity
 @Inheritance(strategy=InheritanceType.SINGLE_TABLE)//inconvenient dans certain cas beaucoup de champ rest vide
 @DiscriminatorColumn(name="TYPE_COMPTE",discriminatorType=DiscriminatorType.STRING,length=2)//on precise le nom de la colonne qui s'ajoutte dans la table
+@Data
 public abstract class Compte implements Serializable {
 	@Id //on doit mettre generatedValue parce le type est String
 	private String codeCompte;
@@ -41,36 +44,7 @@ public abstract class Compte implements Serializable {
 		this.solde = solde;
 		this.client = client;
 	}
-	public String getCodeCompte() {
-		return codeCompte;
-	}
-	public void setCodeCompte(String codeCompte) {
-		this.codeCompte = codeCompte;
-	}
-	public Date getDateCreation() {
-		return dateCreation;
-	}
-	public void setDateCreation(Date dateCreation) {
-		this.dateCreation = dateCreation;
-	}
-	public double getSolde() {
-		return solde;
-	}
-	public void setSolde(double solde) {
-		this.solde = solde;
-	}
-	public Client getClient() {
-		return client;
-	}
-	public void setClient(Client client) {
-		this.client = client;
-	}
-	public Collection<Operation> getOperations() {
-		return operations;
-	}
-	public void setOperations(Collection<Operation> operations) {
-		this.operations = operations;
-	}
+	
 	
 	
 

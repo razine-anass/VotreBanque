@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/Layout"
-      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4"
-      layout:decorator="template1">
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/Layout"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4"
+	layout:decorator="template1">
+	<link rel="stylesheet" type="text/css" href="../static/css/bootstrap.min.css"
+ th:href="@{/css/bootstrap.min.css}"/>
 <head>
 <meta charset="utf-8" />
-<title>Insert title here</title>
+<title>liste clients</title>
 </head>
 
 <body layout:fragment="content">
@@ -23,14 +25,59 @@
 						<label for="nom">Nom:</label> <input type="text"
 							class="form-control" id="nom" th:field="*{nom}" />
 					</div>
+<!-- 					<div class="form-group"> -->
+<!-- 						<label for="email">Ville:</label> <input type="text" -->
+<!-- 							class="form-control" id="ville" th:field="*{ville.nom_ville}" /> -->
+<!-- 					</div> -->
 					<div class="form-group">
-						<label for="email">Email:</label> <input type="text"
-							class="form-control" id="email" th:field="*{email}" />
+						<select id="villeId" th:field="*{ville.id_ville}" class="form-control" >
+							<option value="">Select subject</option>
+							<option th:each="ville : ${villes}" th:value="${ville.id_ville}"
+								th:text="${ville.nom_ville}"></option>
+							</select>	
 					</div>
-					<button type="submit" class="btn btn-primary">Save</button>
+					<div class="form-group">
+						<label for="email">Email:</label> 
+						<input type="text" class="form-control" id="email" th:field="*{email}" />
+					</div>
+					<button id="botton1" type="submit" class="btn btn-primary">Save</button>
 				</form>
 			</div>
 		</div>
 	</div>
+	
+	<script type="text/javascript"
+       src="/js/jquery-3.3.1.min.js"></script>
+		<script>
+// 		$("select#villeId").change(function(){
+// 			alert('az');
+// 	        $.ajax({
+// 	            type:'GET',
+// 	            url:'charger-ville',
+// 	            data:param,
+// 	            success:function(data){
+// 	    			alert('az');
+// 	            }
+// 	        });
+// 	});
+		
+// 			$('#villeId').change(function(){
+// 				alert('az');
+// 			});
+			
+			$(document).ready(function () {
+				
+				$("#botton1").click(function(){
+					$.ajax({
+						url: 'charger-ville',
+						success :function (data){
+							alert('azaz');
+						}
+					})
+				})
+			});
+
+	</script>
+	
 </body>
 </html>

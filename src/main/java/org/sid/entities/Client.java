@@ -7,11 +7,23 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
+
+/**
+ * Classe represantante le client
+ * @author Razine anass
+ *
+ */
 @Entity
+//elle crée les setters et les getters
+@Data
 public class Client implements Serializable {
 	@Id
 	@GeneratedValue
@@ -22,44 +34,33 @@ public class Client implements Serializable {
 	@OneToMany(mappedBy="client",fetch=FetchType.LAZY)
 	@JsonIgnore//n'est pas sérialisé par jackson
 	private Collection<Compte> comptes;
+	@ManyToOne
+	private Ville ville;
 	
 	public Client() {
 		super();
 	}
+	/**
+	 * Constructeur Client
+	 * @param nom
+	 * @param email
+	 */
 	public Client(String nom, String email) {
 		super();
 		this.nom = nom;
 		this.email = email;
 	}
 	/**
-	 * 
-	 * @return
+	 * Constructeur Client
+	 * @param nom
+	 * @param email
+	 * @param ville
 	 */
-	public Long getCode() {
-		return code;
-	}
-	public void setCode(Long code) {
-		this.code = code;
-	}
-	public String getNom() {
-		return nom;
-	}
-	public void setNom(String nom) {
+	public Client(String nom, String email, Ville ville) {
+		super();
 		this.nom = nom;
-	}
-	public String getEmail() {
-		return email;
-	}
-	public void setEmail(String email) {
 		this.email = email;
+		this.ville = ville;
 	}
-	public Collection<Compte> getComptes() {
-		return comptes;
-	}
-	public void setComptes(Collection<Compte> comptes) {
-		this.comptes = comptes;
-	}
-	
-	
 
 }
